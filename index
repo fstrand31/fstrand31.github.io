@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Felicia Strand – Home</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+  <div class="container">
+
+    <!-- ================= SIDEBAR ================= -->
+    <aside class="sidebar">
+      <h1 class="site-title">Felicia Strand</h1>
+      <img src="images/picprofme.jpg" alt="Portrait of you" class="portrait" />
+
+      <nav class="nav">
+        <ul>
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="graphics.html">Graphic Design</a></li>
+          <li><a href="illustration.html">Illustration</a></li>
+          <li><a href="animation.html">Animation</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <main class="content">
+
+      <!-- ENTRY 1 -->
+      <section class="entry left">
+        <img src="images/rebunto_pano.jpg" alt="Rebunto Pano" class="entry-image" />
+        <div class="entry-text">
+          <h3 class="entry-title">礼文島 パノラマ (Rebunto Panorama)</h3>
+          <p class="entry-year">2025</p>
+          <p class="entry-description">
+            Digital Painting of the view of Mt. Rishiri (利尻山) from Midorigaoka Park. Created in Clip Studio Paint.
+          </p>
+          <button class="more-btn" data-gallery="gallery1">+</button>
+        </div>
+      </section>
+
+      <!-- ENTRY 2 -->
+      <section class="entry left">
+        <img src="images/lilac_and_hibiscus_clippings.jpg" alt="Horticulture Clippings" class="entry-image" />
+        <div class="entry-text">
+          <h3 class="entry-title">Horticulture Clippings</h3>
+          <p class="entry-year">2024</p>
+          <p class="entry-description">
+            Vector graphic of softwood hibiscus clippings. Made for Oregon State University's HORT 310 Ecampus course.
+          </p>
+          <button class="more-btn" data-gallery="gallery2">+</button>
+        </div>
+      </section>
+
+      <!-- ENTRY 3 (VIDEO) -->
+      <section class="entry left">
+        <video class="entry-video" controls poster="images/crypt.jpeg">
+          <source src="images/CS_427_Animation_Final.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+
+        <div class="entry-text">
+          <h3 class="entry-title">History of Cryptography Animation</h3>
+          <p class="entry-year">2025</p>
+          <p class="entry-description">
+            A motion-graphics explainer tracing the evolution of cryptography across centuries,
+            created for OSU Ecampus. Designed all custom graphics, led animation, and sound design.
+          </p>
+          <button class="more-btn" data-gallery="gallery7">+</button>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ================= LIGHT/DARK MODE TOGGLE ================= -->
+  <button id="theme-toggle" class="theme-toggle">₊˚⊹Light Mode⊹˚₊</button>
+
+  <!-- ================= MODAL (CAROUSEL) ================= -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <!-- Close button -->
+      <span id="modal-close" class="close">&times;</span>
+
+      <!-- Main image -->
+      <img id="carousel-main" src="" alt="Expanded Image">
+
+      <!-- Navigation arrows -->
+      <button id="prev" class="arrow left-arrow">&#10094;</button>
+      <button id="next" class="arrow right-arrow">&#10095;</button>
+
+      <!-- Thumbnails -->
+      <div id="carousel-thumbnails"></div>
+    </div>
+  </div>
+
+  <!-- ================= HIDDEN GALLERIES ================= -->
+  <div id="gallery1" class="gallery" style="display:none;">
+    <img src="images/rebunto_pano.jpg" alt="Rebunto Pano">
+  </div>
+
+  <div id="gallery2" class="gallery" style="display:none;">
+    <img src="images/softwood_hibiscus.png" alt="Hibiscus clipping">
+    <img src="images/Semi-hardwood lilac_final.png" alt="Lilac clipping">
+  </div>
+
+  <div id="gallery7" class="gallery" style="display:none;">
+    <img src="images/cryptog_title.png" alt="Cryptography Title">
+    <img src="images/enigma_machine.png" alt="Enigma Machine">
+    <img src="images/bletchley_park_still.png" alt="Bletchley Park">
+    <img src="images/bletchley_machine.png" alt="Bletchley Machine">
+  </div>
+
+  <!-- Lightbox HTML (add once per page) -->
+<div id="lightbox" style="
+  position:fixed;
+  top:0; left:0;
+  width:100vw; height:100vh;
+  background:rgba(0,0,0,0.8);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+">
+  <span id="lightbox-close" style="
+    position:absolute;
+    top:20px; right:30px;
+    font-size:3rem;
+    color:white;
+    cursor:pointer;
+  ">&times;</span>
+  <img id="lightbox-img" src="" alt="" style="
+    max-width:90%;
+    max-height:90%;
+    border-radius:6px;
+  ">
+</div>
+
+<script>
+  // Find all entry images on this page
+  document.querySelectorAll('.entry-image').forEach(img => {
+    img.style.cursor = "zoom-in"; // visual hint
+    img.addEventListener('click', () => {
+      document.getElementById('lightbox-img').src = img.src;
+      document.getElementById('lightbox').style.display = "flex";
+    });
+  });
+
+  // Close button
+  document.getElementById('lightbox-close').onclick = () => {
+    document.getElementById('lightbox').style.display = "none";
+  };
+
+  // Click background to close
+  document.getElementById('lightbox').onclick = (e) => {
+    if (e.target.id === 'lightbox') {
+      document.getElementById('lightbox').style.display = "none";
+    }
+  };
+</script>
+
+  <!-- ================= SCRIPTS ================= -->
+  <script src="js/scripts.js"></script>
+</body>
+</html>
