@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Felicia Strand – Contact</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <h1 class="site-title">Felicia Strand</h1>
+      <img src="images/picprofme.jpg" alt="Portrait of you" class="portrait" />
+      <nav class="nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="graphics.html">Graphic Design</a></li>
+          <li><a href="illustration.html">Illustration</a></li>
+          <li><a href="animation.html">Animation</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <h2>Contact</h2>
+     <strong>design@feliciastrand.com<strong>
+    </main>
+  </div>
+
+  <button id="theme-toggle" class="theme-toggle">₊˚⊹Light Mode⊹˚₊</button>
+
+  <script src="js/script.js"></script>
+</body>
+</html
