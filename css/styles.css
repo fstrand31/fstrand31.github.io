@@ -46,7 +46,7 @@ body {
   width: 240px;
   height: 240px;
   object-fit: cover;
-  border-radius: 4px;
+  border-radius: 0px;
   margin-top: -20px;
   margin-bottom: 5px;
   align-self: flex-start;
@@ -116,7 +116,7 @@ body.dark-mode .theme-toggle {
   width: 580px;   
   max-width: 100%; 
   height: auto;    
-  border-radius: 6px;
+  border-radius: 0px;
 }
 
 .entry-text {
@@ -143,7 +143,7 @@ body.dark-mode .theme-toggle {
 .entry-video {
   width: 580px;
   height: auto;
-  border-radius: 6px;
+  border-radius: 0px;
   display: block;
   margin: 0 auto 20px auto;
   flex-shrink: 0;
@@ -174,7 +174,7 @@ body.dark-mode .modal {
 ========================= */
 .modal-content {
   background-color: rgba(255, 255, 255, 0.95); /* slightly transparent white box */
-  border-radius: 8px;
+  border-radius: 0px;
   margin: 60px auto;
   padding: 20px;
   width: 80%;
@@ -267,7 +267,7 @@ body.dark-mode .close {
   width: 60px;
   height: 60px;
   object-fit: cover;
-  border-radius: 4px;
+  border-radius: 0px;
   cursor: pointer;
   opacity: 0.7;
   transition: opacity 0.2s ease, transform 0.2s ease;
@@ -361,7 +361,7 @@ body.dark-mode {
   width: 100%;
   max-height: 500px;
   object-fit: contain;
-  border-radius: 6px;
+  border-radius: 0px;
   margin-bottom: 10px;
   display: block;
   position: relative;
@@ -408,7 +408,7 @@ body.dark-mode {
   width: 60px;
   height: 60px;
   object-fit: cover;
-  border-radius: 4px;
+  border-radius: 0px;
   cursor: pointer;
   opacity: 0.7;
   transition: opacity 0.2s ease, transform 0.2s ease;
