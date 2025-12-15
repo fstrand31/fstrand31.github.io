@@ -85,13 +85,13 @@ body {
   border: 1px solid #222;
   padding: 8px 12px;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 2px;
   z-index: 1000;
   font-weight: bold;
 }
-
 body.dark-mode .theme-toggle {
   border-color: #f7f5f0;
+  color: #f7f5f0; /* makes the "Dark Mode" text white */
 }
 
 /* =========================
