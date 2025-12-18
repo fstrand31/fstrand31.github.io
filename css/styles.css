@@ -512,8 +512,8 @@ img {
 ========================= */
 #backToTop {
   position: fixed;
-  bottom: 20px;
-  right: 20px;       /* lower right corner */
+  bottom: 20px;        /* same distance from bottom */
+  right: 20px;         /* lower right corner */
   background: none;
   border: 1px solid #222;
   padding: 8px 12px;
@@ -521,14 +521,13 @@ img {
   border-radius: 2px;
   z-index: 1000;
   font-weight: bold;
-  width: auto;        /* prevents stretching */
-  max-width: 200px;   /* optional, keep button small */
-  display: inline-block;  /* ensures it doesn’t stretch in flex */
+  width: auto;
+  max-width: 200px;
+  display: inline-block;
   text-align: center;
   opacity: 1;
   pointer-events: auto;
 }
-
 
 /* Dark mode styling */
 body.dark-mode #backToTop {
