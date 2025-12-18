@@ -521,10 +521,14 @@ img {
   border-radius: 2px;
   z-index: 1000;
   font-weight: bold;
-  width: auto;        /* ensures it doesn’t stretch full width */
-  opacity: 1;         /* always visible */
+  width: auto;        /* prevents stretching */
+  max-width: 200px;   /* optional, keep button small */
+  display: inline-block;  /* ensures it doesn’t stretch in flex */
+  text-align: center;
+  opacity: 1;
   pointer-events: auto;
 }
+
 
 /* Dark mode styling */
 body.dark-mode #backToTop {
