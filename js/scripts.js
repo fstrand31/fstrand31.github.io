@@ -212,6 +212,25 @@ document.getElementById('lightbox').addEventListener('click', (e) => {
  }
 });
 
+// BACK TO TOP BUTTON
+const backToTop = document.getElementById('backToTop');
+
+// Hide initially
+backToTop.style.display = 'none';
+
+// Show button after scrolling 300px, hide otherwise
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 300) {
+    backToTop.style.display = 'block';
+  } else {
+    backToTop.style.display = 'none';
+  }
+});
+
+// Smooth scroll to top on click
+backToTop.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
 
 
 
