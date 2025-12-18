@@ -29,29 +29,7 @@ toggleButton.addEventListener('click', () => {
     localStorage.setItem('theme', 'light');
   }
 });
-  <script>
-  const backToTop = document.getElementById("backToTop");
-
-  window.addEventListener("scroll", () => {
-    const scrollTop = window.scrollY;
-    const docHeight =
-      document.documentElement.scrollHeight - window.innerHeight;
-    const scrolledPercent = scrollTop / docHeight;
-
-    if (scrolledPercent > 0.5) {
-      backToTop.classList.add("show");
-    } else {
-      backToTop.classList.remove("show");
-    }
-  });
-
-  backToTop.addEventListener("click", () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-  });
-</script>
+  
 
 
 
@@ -212,42 +190,23 @@ document.getElementById('lightbox').addEventListener('click', (e) => {
  }
 });
 
-// BACK TO TOP BUTTON
 const backToTop = document.getElementById('backToTop');
 
-// Hide initially
-backToTop.style.display = 'none';
-
-// Show button after scrolling 300px, hide otherwise
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 300) {
-    backToTop.style.display = 'block';
-  } else {
-    backToTop.style.display = 'none';
-  }
-});
-
-// Smooth scroll to top on click
-backToTop.addEventListener('click', () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-  const backToTop = document.getElementById('backToTop');
-
+if (backToTop) {
+  // Show/hide button after scrolling 300px
   window.addEventListener('scroll', () => {
     if (window.scrollY > 300) {
-      backToTop.classList.add('show');
+      backToTop.classList.add('show');  // uses your CSS
     } else {
       backToTop.classList.remove('show');
     }
   });
 
+  // Scroll smoothly to top on click
   backToTop.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
-});
-
+}
 
 
 
