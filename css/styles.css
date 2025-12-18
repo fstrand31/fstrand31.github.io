@@ -522,16 +522,10 @@ img {
   font-weight: bold;
   z-index: 1000;             /* on top of content */
   
-  /* Hidden by default */
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-}
-
-/* Show the button when active */
-#backToTop.show {
+  /* Always visible */
   opacity: 1;
   pointer-events: auto;
+  transition: opacity 0.3s ease;
 }
 
 /* Dark mode styling */
