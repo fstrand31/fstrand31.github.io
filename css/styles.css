@@ -507,3 +507,16 @@ body.dark-mode {
 img {
   border-radius: 0 !important;
 }
+/* Back to Top button behavior */
+.back-to-top {
+  left: auto;        /* override theme-toggle */
+  right: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.back-to-top.show {
+  opacity: 1;
+  pointer-events: auto;
+}
