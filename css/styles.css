@@ -510,22 +510,23 @@ img {
 /* =========================
    BACK TO TOP BUTTON
 ========================= */
+
 #backToTop {
   position: fixed;
-  bottom: 60px; /* leave room above dark mode button */
-  right: 20px;
-  z-index: 1000;
-
-  display: inline-block; /* shrink to fit text */
-  width: auto;           /* don’t stretch */
-  text-align: center;
-
+  bottom: 20px;
+  right: 20px;       /* changed from left to right */
   background: none;
   border: 1px solid #222;
   padding: 8px 12px;
   cursor: pointer;
   border-radius: 2px;
+  z-index: 1000;
   font-weight: bold;
+   body.dark-mode #backToTop {
+  border-color: #f7f5f0;
+  color: #f7f5f0;
+}
+}
 
   opacity: 1;
   pointer-events: auto;
