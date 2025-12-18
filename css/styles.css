@@ -510,11 +510,10 @@ img {
 /* =========================
    BACK TO TOP BUTTON
 ========================= */
-
 #backToTop {
   position: fixed;
   bottom: 20px;
-  right: 20px;       /* changed from left to right */
+  right: 20px;       /* lower right corner */
   background: none;
   border: 1px solid #222;
   padding: 8px 12px;
@@ -522,16 +521,13 @@ img {
   border-radius: 2px;
   z-index: 1000;
   font-weight: bold;
-   body.dark-mode #backToTop {
-  border-color: #f7f5f0;
-  color: #f7f5f0;
-}
-}
-
-  opacity: 1;
+  width: auto;        /* ensures it doesn’t stretch full width */
+  opacity: 1;         /* always visible */
   pointer-events: auto;
 }
 
+/* Dark mode styling */
 body.dark-mode #backToTop {
   border-color: #f7f5f0;
   color: #f7f5f0;
+}
