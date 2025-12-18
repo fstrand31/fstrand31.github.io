@@ -194,16 +194,23 @@ document.getElementById('lightbox').addEventListener('click', (e) => {
 // BACK TO TOP BUTTON
 // =========================
 
-// Get the button
-const backToTop = document.getElementById('backToTop');
+const backToTopBtn = document.getElementById("backToTop");
 
-// Scroll smoothly to top when clicked
-backToTop.addEventListener('click', () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+window.onscroll = function() {
+  // Show button after scrolling down 300px
+  if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+    backToTopBtn.classList.add("show");
+  } else {
+    backToTopBtn.classList.remove("show");
+  }
+};
+
+backToTopBtn.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
 });
-
-
-
 
 
 
