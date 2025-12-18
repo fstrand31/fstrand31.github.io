@@ -29,6 +29,29 @@ toggleButton.addEventListener('click', () => {
     localStorage.setItem('theme', 'light');
   }
 });
+  <script>
+  const backToTop = document.getElementById("backToTop");
+
+  window.addEventListener("scroll", () => {
+    const scrollTop = window.scrollY;
+    const docHeight =
+      document.documentElement.scrollHeight - window.innerHeight;
+    const scrolledPercent = scrollTop / docHeight;
+
+    if (scrolledPercent > 0.5) {
+      backToTop.classList.add("show");
+    } else {
+      backToTop.classList.remove("show");
+    }
+  });
+
+  backToTop.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
+</script>
 
 
 
