@@ -510,10 +510,13 @@ img {
 /* =========================
    BACK TO TOP BUTTON
 ========================= */
+/* =========================
+   BACK TO TOP BUTTON
+========================= */
 #backToTop {
-  position: fixed;       /* fixed relative to viewport */
-  bottom: 20px;          /* distance from bottom */
-  right: 20px;           /* lower right corner */
+  position: fixed;        /* fixed to viewport */
+  bottom: 20px;           /* distance from bottom */
+  right: 20px;            /* distance from right */
   background: none;
   border: 1px solid #222;
   padding: 8px 12px;
@@ -521,18 +524,15 @@ img {
   border-radius: 2px;
   z-index: 1000;
   font-weight: bold;
-  width: auto;           /* don't stretch */
-  max-width: 200px;
+  width: auto;            /* only as wide as content */
+  max-width: 200px;       /* optional max size */
+  display: inline-block;   /* prevents stretching */
   text-align: center;
-  opacity: 1;
+  opacity: 1;             /* always visible */
   pointer-events: auto;
-
-  display: block;        /* overrides flex children behavior */
-  flex: none;            /* prevent flex sizing */
 }
 
-
-/* Dark mode styling */
+/* Dark mode styling (matches your toggle) */
 body.dark-mode #backToTop {
   border-color: #f7f5f0;
   color: #f7f5f0;
