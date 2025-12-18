@@ -511,9 +511,9 @@ img {
    BACK TO TOP BUTTON
 ========================= */
 #backToTop {
-  position: fixed;
-  bottom: 20px;        /* same distance from bottom */
-  right: 20px;         /* lower right corner */
+  position: fixed;       /* fixed relative to viewport */
+  bottom: 20px;          /* 20px from bottom */
+  right: 20px;           /* 20px from right */
   background: none;
   border: 1px solid #222;
   padding: 8px 12px;
@@ -521,10 +521,10 @@ img {
   border-radius: 2px;
   z-index: 1000;
   font-weight: bold;
-  width: auto;
-  max-width: 200px;
+  width: auto;           /* don't stretch */
+  max-width: 200px;      /* optional */
   text-align: center;
-  opacity: 1;
+  opacity: 1;            /* always visible */
   pointer-events: auto;
 }
 
