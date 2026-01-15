@@ -66,7 +66,16 @@ galleries.forEach(g => g.style.display = 'none');
 
 // Function to update main image
 function updateMain() {
-  mainImg.src = images[currentIndex];
+ carouselMain.innerHTML = "";
+
+const img = document.createElement("img");
+img.src = images[currentIndex];
+img.style.maxWidth = "100%";
+img.style.maxHeight = "85vh";
+img.style.objectFit = "contain";
+
+carouselMain.appendChild(img);
+
 
 
 
@@ -189,21 +198,19 @@ document.getElementById('lightbox').addEventListener('click', (e) => {
  }
 });
 
+function renderSlide() {
+  carouselMain.innerHTML = "";
+  const slideClone = slides[currentIndex].cloneNode(true);
 
+  // Remove height restriction for Tepals
+  if (galleryId === 'tepals-flipbook') {
+    slideClone.style.maxHeight = "none";
+    slideClone.style.height = "auto";
+  }
 
+  carouselMain.appendChild(slideClone);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  // Make modal height fit the content
+  modalContent.style.height = `${slideClone.scrollHeight + 60}px`; // padding
+}
 
