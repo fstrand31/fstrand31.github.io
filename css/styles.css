@@ -173,12 +173,12 @@ body.dark-mode .modal {
    MODAL CONTENT
 ========================= */
 .modal-content {
-  background-color: rgba(255, 255, 255, 0.95); /* slightly transparent white box */
+  background-color: rgba(255, 255, 255, 0.95);
   border-radius: 0px;
-  margin: 60px auto;
+  margin: 40px auto;      /* slightly smaller margin = more vertical room */
   padding: 20px;
   width: 80%;
-  max-width: 900px;
+  max-width: 1000px;      /* 🔥 allow wider/taller content */
   position: relative;
   transition: background-color 0.3s ease;
 }
@@ -218,10 +218,8 @@ body.dark-mode .close {
 /* Main image */
 #carousel-main {
   width: 100%;
-  max-height: 500px;
+  max-height: 85vh;       /* 🔥 image fits viewport */
   object-fit: contain;
-  border-radius: 6px;
-  margin-bottom: 10px;
   display: block;
 }
 
@@ -506,4 +504,116 @@ body.dark-mode {
 }
 img {
   border-radius: 0 !important;
+}
+/* =========================
+   INLINE FLIPBOOK
+========================= */
+
+.flipbook-entry {
+  width: 580px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-in;
+}
+
+.flip-stage {
+  width: 580px;
+  display: flex;
+  justify-content: center;
+  gap: 0;                 /* 🔥 remove space */
+}
+
+.flip-page {
+  width: 290px;           /* exactly half of 580 */
+}
+
+.flip-page img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.flip-page:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+
+/* arrows match your existing style */
+.flip-arrow {
+  background: rgba(0,0,0,0.4);
+  border: none;
+  color: white;
+  font-size: 20px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.flip-arrow:hover {
+  background: rgba(255,255,255,0.8);
+  color: black;
+}
+
+/* =========================
+   MODAL FLIPBOOK SPREADS
+========================= */
+
+.flipbook-spread {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  width: 100%;
+}
+
+.flipbook-spread img {
+  width: 50%;
+  height: auto;
+  max-height: 85vh;       /* 🔥 prevents overflow */
+  object-fit: contain;
+}
+#tepals-flipbook ~ #carousel-main {
+  max-height: none;       /* allow taller content */
+}
+.modal-content {
+  max-height: none;       /* remove any vertical restriction */
+  padding-bottom: 40px;   /* extra room at bottom for tall spreads */
+}
+
+/* =========================
+   CAROUSEL ARROWS – OFF IMAGE
+========================= */
+
+#modal .modal-content {
+  position: relative;
+}
+
+#prev,
+#next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Push arrows OUTSIDE the image area */
+#prev {
+  left: -50px;    /* adjust distance from page edge */
+}
+
+#next {
+  right: -50px;
+}
+
+/* =========================
+   REMOVE MODAL BACKGROUND FOR TEPALS
+========================= */
+
+/* When Tepals gallery is active */
+#modal:has(#tepals-flipbook) .modal-content {
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
 }
