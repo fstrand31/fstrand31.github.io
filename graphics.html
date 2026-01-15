@@ -28,6 +28,25 @@
     <main class="content">
 
       <section class="entry left">
+  <div class="flipbook-entry" data-gallery="tepals-flipbook">
+    <button class="flip-arrow prev">←</button>
+
+    <div class="flip-stage"></div>
+
+    <button class="flip-arrow next">→</button>
+  </div>
+
+  <div class="entry-text">
+    <h3 class="entry-title">Tepals Magazine Issue 1: Rebun Island</h3>
+    <p class="entry-year">2026</p>
+    <p class="entry-description">
+      Travel magazine issue featuring Rebun and Rishiri Islands in Hokkaido Prefecture, Japan. Created with Illustrator and Clip Studio Paint.
+    </p>
+  </div>
+</section>
+
+
+      <section class="entry left">
         <img src="images/Totoro_PlayingCards.png" alt="Totoro Playing Cards" class="entry-image" />
         <div class="entry-text">
           <h3 class="entry-title">Totoro Playing Cards</h3>
@@ -284,7 +303,7 @@
   <div class="modal-content">
     <span id="modal-close" class="close">&times;</span>
 
-    <img id="carousel-main" class="carousel-main" src="" alt="Main image">
+<div id="carousel-main" class="carousel-main"></div>
 
     <button id="prev" class="carousel-arrow">←</button>
     <button id="next" class="carousel-arrow">→</button>
@@ -292,6 +311,9 @@
     <div id="carousel-thumbnails" class="carousel-thumbnails"></div>
 
     <!-- ================= FIXED GALLERIES ================= -->
+
+    <div id="tepals-flipbook" class="gallery" style="display:none;"></div>
+
 
     <div id="gallery1" class="gallery" style="display:none;">
       <img src="images/Strand_A2_Back.png" alt="card back">
@@ -442,6 +464,131 @@
 
 <!-- External JS -->
 <script src="js/scripts.js"></script>
+
+<script>
+/* =========================
+   FLIPBOOK LOGIC
+========================= */
+
+const totalPages = 16;
+const stage = document.querySelector('.flip-stage');
+const prevBtn = document.querySelector('.flip-arrow.prev');
+const nextBtn = document.querySelector('.flip-arrow.next');
+const flipbook = document.querySelector('.flipbook-entry');
+const modalGallery = document.getElementById('tepals-flipbook');
+
+let spreadIndex = 0;
+
+/* Build spreads */
+const spreads = [];
+spreads.push([1]); // cover
+
+for (let i = 2; i < totalPages; i += 2) {
+  spreads.push([i, i + 1]);
+}
+
+spreads.push([totalPages]); // last page
+
+/* Render inline flipbook */
+function renderSpread() {
+  stage.innerHTML = '';
+  stage.classList.toggle('single', spreads[spreadIndex].length === 1);
+
+  spreads[spreadIndex].forEach(page => {
+    const pageWrap = document.createElement('div');
+    pageWrap.className = 'flip-page';
+
+    const img = document.createElement('img');
+    img.src = `images/tepals_issue_1_pg_${page}.jpg`;
+    img.alt = `Page ${page}`;
+
+    pageWrap.appendChild(img);
+    stage.appendChild(pageWrap);
+  });
+
+  prevBtn.style.visibility = spreadIndex === 0 ? 'hidden' : 'visible';
+  nextBtn.style.visibility = spreadIndex === spreads.length - 1 ? 'hidden' : 'visible';
+}
+
+prevBtn.onclick = e => {
+  e.stopPropagation();
+  if (spreadIndex > 0) {
+    spreadIndex--;
+    renderSpread();
+  }
+};
+
+nextBtn.onclick = e => {
+  e.stopPropagation();
+  if (spreadIndex < spreads.length - 1) {
+    spreadIndex++;
+    renderSpread();
+  }
+};
+
+renderSpread();
+
+/* =========================
+   BUILD MODAL CAROUSEL SPREADS
+========================= */
+
+spreads.forEach(spread => {
+  const spreadDiv = document.createElement('div');
+  spreadDiv.className = 'flipbook-spread';
+
+  spread.forEach(page => {
+    const img = document.createElement('img');
+    img.src = `images/tepals_issue_1_pg_${page}.jpg`;
+    img.alt = `Page ${page}`;
+    spreadDiv.appendChild(img);
+  });
+
+  modalGallery.appendChild(spreadDiv);
+});
+
+/* =========================
+   CONNECT TO EXISTING MODAL
+========================= */
+
+flipbook.addEventListener('click', () => {
+  openGallery('tepals-flipbook');
+});
+
+/* =========================
+   CAROUSEL PATCH (SUPPORT DIV SLIDES)
+========================= */
+
+const originalOpenGallery = window.openGallery;
+
+window.openGallery = function (galleryId) {
+  const gallery = document.getElementById(galleryId);
+  const slides = Array.from(gallery.children);
+
+  let currentIndex = 0;
+
+  const modal = document.getElementById("modal");
+  const carouselMain = document.getElementById("carousel-main");
+
+  modal.style.display = "block";
+
+  function renderSlide() {
+    carouselMain.innerHTML = "";
+    carouselMain.appendChild(slides[currentIndex].cloneNode(true));
+  }
+
+  document.getElementById("prev").onclick = () => {
+    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+    renderSlide();
+  };
+
+  document.getElementById("next").onclick = () => {
+    currentIndex = (currentIndex + 1) % slides.length;
+    renderSlide();
+  };
+
+  renderSlide();
+};
+</script>
 
 </body>
 </html>
