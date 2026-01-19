@@ -474,10 +474,73 @@
 <script src="js/scripts.js"></script>
 
 <script>
-/* =========================
-   FLIPBOOK LOGIC
-========================= */
+  document.querySelectorAll('.more-btn').forEach(btn => {
+  btn.addEventListener('click', e => {
+    e.stopPropagation(); // prevent section/image clicks
+    const galleryId = btn.dataset.gallery;
+    openGallery(galleryId);
+  });
+});
 
+
+/* =========================
+   GALLERY MODAL FUNCTION
+========================= */
+function openGallery(galleryId) {
+  const modal = document.getElementById('modal');
+  const carouselMain = document.getElementById('carousel-main');
+  const thumbnails = document.getElementById('carousel-thumbnails');
+  const gallery = document.getElementById(galleryId);
+
+  if (!gallery) {
+    console.error('Gallery not found:', galleryId);
+    return;
+  }
+
+  const slides = Array.from(gallery.children);
+  let currentIndex = 0;
+
+  modal.style.display = 'flex';
+
+  function renderSlide() {
+    carouselMain.innerHTML = '';
+    carouselMain.appendChild(slides[currentIndex].cloneNode(true));
+
+    thumbnails.innerHTML = '';
+    slides.forEach((slide, i) => {
+      const thumb = slide.cloneNode(true);
+      thumb.classList.toggle('active', i === currentIndex);
+      thumb.onclick = () => {
+        currentIndex = i;
+        renderSlide();
+      };
+      thumbnails.appendChild(thumb);
+    });
+  }
+
+  document.getElementById('prev').onclick = e => {
+    e.stopPropagation();
+    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+    renderSlide();
+  };
+
+  document.getElementById('next').onclick = e => {
+    e.stopPropagation();
+    currentIndex = (currentIndex + 1) % slides.length;
+    renderSlide();
+  };
+
+  document.getElementById('modal-close').onclick = () => {
+    modal.style.display = 'none';
+  };
+
+  renderSlide();
+}
+
+
+/* =========================
+   FLIPBOOK INLINE RENDER
+========================= */
 const totalPages = 16;
 const stage = document.querySelector('.flip-stage');
 const prevBtn = document.querySelector('.flip-arrow.prev');
@@ -487,17 +550,13 @@ const modalGallery = document.getElementById('tepals-flipbook');
 
 let spreadIndex = 0;
 
-/* Build spreads */
+// Build spreads: cover, spreads of 2, last page
 const spreads = [];
 spreads.push([1]); // cover
-
-for (let i = 2; i < totalPages; i += 2) {
-  spreads.push([i, i + 1]);
-}
-
+for (let i = 2; i < totalPages; i += 2) spreads.push([i, i + 1]);
 spreads.push([totalPages]); // last page
 
-/* Render inline flipbook */
+// Render inline flipbook spread
 function renderSpread() {
   stage.innerHTML = '';
   stage.classList.toggle('single', spreads[spreadIndex].length === 1);
@@ -518,85 +577,33 @@ function renderSpread() {
   nextBtn.style.visibility = spreadIndex === spreads.length - 1 ? 'hidden' : 'visible';
 }
 
-prevBtn.onclick = e => {
-  e.stopPropagation();
-  if (spreadIndex > 0) {
-    spreadIndex--;
-    renderSpread();
-  }
-};
+// Inline navigation
+prevBtn.onclick = e => { e.stopPropagation(); if (spreadIndex > 0) { spreadIndex--; renderSpread(); } };
+nextBtn.onclick = e => { e.stopPropagation(); if (spreadIndex < spreads.length - 1) { spreadIndex++; renderSpread(); } };
 
-nextBtn.onclick = e => {
-  e.stopPropagation();
-  if (spreadIndex < spreads.length - 1) {
-    spreadIndex++;
-    renderSpread();
-  }
-};
-
+// Initial render
 renderSpread();
 
 /* =========================
-   BUILD MODAL CAROUSEL SPREADS
+   FLIPBOOK → MODAL GALLERY
 ========================= */
-
-spreads.forEach(spread => {
-  const spreadDiv = document.createElement('div');
-  spreadDiv.className = 'flipbook-spread';
-
-  spread.forEach(page => {
-    const img = document.createElement('img');
-    img.src = `images/tepals_issue_1_pg_${page}.jpg`;
-    img.alt = `Page ${page}`;
-    spreadDiv.appendChild(img);
-  });
-
-  modalGallery.appendChild(spreadDiv);
-});
-
-/* =========================
-   CONNECT TO EXISTING MODAL
-========================= */
-
 flipbook.addEventListener('click', () => {
+  // Populate modal only if empty
+  if (modalGallery.children.length === 0) {
+    for (let i = 1; i <= totalPages; i++) {
+      const img = document.createElement('img');
+      img.src = `images/tepals_issue_1_pg_${i}.jpg`;
+      img.alt = `Page ${i}`;
+      modalGallery.appendChild(img);
+    }
+  }
+
+  // Open modal using existing gallery function
   openGallery('tepals-flipbook');
 });
 
-/* =========================
-   CAROUSEL PATCH (SUPPORT DIV SLIDES)
-========================= */
-
-const originalOpenGallery = window.openGallery;
-
-window.openGallery = function (galleryId) {
-  const gallery = document.getElementById(galleryId);
-  const slides = Array.from(gallery.children);
-
-  let currentIndex = 0;
-
-  const modal = document.getElementById("modal");
-  const carouselMain = document.getElementById("carousel-main");
-
-  modal.style.display = "block";
-
-  function renderSlide() {
-    carouselMain.innerHTML = "";
-    carouselMain.appendChild(slides[currentIndex].cloneNode(true));
-  }
-
-  document.getElementById("prev").onclick = () => {
-    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-    renderSlide();
-  };
-
-  document.getElementById("next").onclick = () => {
-    currentIndex = (currentIndex + 1) % slides.length;
-    renderSlide();
-  };
-
-  renderSlide();
-};
 </script>
+
 
 </body>
 </html>
