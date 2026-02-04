@@ -4,7 +4,7 @@
 body {
   display: flex;
   justify-content: center;
-  background-color: #f7f5f0;
+  background-color: #FFF8E7;
   color: #222;
   font-family: Helvetica, Arial, sans-serif;
   margin: 0;
@@ -90,8 +90,8 @@ body {
   font-weight: bold;
 }
 body.dark-mode .theme-toggle {
-  border-color: #f7f5f0;
-  color: #f7f5f0; /* makes the "Dark Mode" text white */
+  border-color: #FFF8E7;
+  color: #FFF8E7; /* makes the "Dark Mode" text cosmic latte */
 }
 
 /* =========================
@@ -207,7 +207,7 @@ body.dark-mode #modal::before {
 }
 
 body.dark-mode .close {
-  color: #f7f5f0;
+  color: #FFF8E7;
 }
 
 /* =========================
@@ -304,7 +304,7 @@ body.dark-mode .close {
 ========================= */
 body.dark-mode {
   background-color: #1f1f1f;
-  color: #f7f5f0;
+  color: #FFF8E7;
 }
 
 /* =========================
