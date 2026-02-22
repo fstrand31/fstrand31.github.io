@@ -494,7 +494,6 @@ body.dark-mode {
 .about-text {
   font-size: 1rem;           /* text size */
   line-height: 1.5;          /* space between lines */
-  color: #222;               /* text color */
   max-width: 500px;          /* limit paragraph width */
   margin: -7 auto;            /* center on the page */
 }
@@ -604,11 +603,11 @@ img {
 
 /* Push arrows OUTSIDE the image area */
 #prev {
-  left: -50px;    /* adjust distance from page edge */
+  left: 0px;    /* adjust distance from page edge */
 }
 
 #next {
-  right: -50px;
+  right: 0px;
 }
 
 /* =========================
@@ -642,3 +641,8 @@ img {
   max-height: 100%;     /* fit inside #carousel-main */
   object-fit: contain;
 } 
+
+/* Move nav tabs up 50px on all pages except About */
+body:not(.about-page) .nav ul {
+  margin-top: -20px; /* 30px original - 50px shift = -20px */
+}
