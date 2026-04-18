@@ -92,6 +92,15 @@ body.dark-mode .theme-toggle {
   border-color: #FFF8E7;
   color: #FFF8E7; /* makes the "Dark Mode" text cosmic latte */
 }
+/* Default (light mode) */
+.logo {
+  content: url("images/logo_for_lightmode.png");
+}
+
+/* When your site switches to dark mode */
+body.dark-mode .logo {
+  content: url("images/logo_for_darkmode.png");
+}
 
 /* =========================
    MAIN CONTENT
