@@ -21,8 +21,13 @@
 
     <!-- ================= SIDEBAR ================= -->
     <aside class="sidebar">
-      <img src="images/logo_for_lightmode.png" alt="" class="portrait" />
-
+<picture>
+    <!-- Dark mode -->
+    <source srcset="images/logo_for_darkmode.png" media="(prefers-color-scheme: dark)">
+    
+    <!-- Light mode (default) -->
+    <img src="images/logo_for_lightmode.png" alt="" class="portrait" />
+  </picture>
       <nav class="nav">
         <ul>
           <li><a href="index.html" class="active">Home</a></li>
