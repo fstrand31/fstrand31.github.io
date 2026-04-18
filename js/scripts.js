@@ -6,6 +6,20 @@ const toggleButton = document.getElementById('theme-toggle');
 const lightLabel = '₊˚⊹Light Mode⊹˚₊';
 const darkLabel = '₊˚⊹Dark Mode⊹˚₊';
 
+const toggleBtn = document.getElementById("theme-toggle");
+const body = document.body;
+const logo = document.getElementById("logo");
+
+toggleBtn.addEventListener("click", () => {
+  body.classList.toggle("dark-mode");
+
+  if (body.classList.contains("dark-mode")) {
+    logo.src = "images/logo_for_darkmode.png";
+  } else {
+    logo.src = "images/logo_for_lightmode.png";
+  }
+});
+
 // Load theme for this session only
 if (sessionStorage.getItem('theme') === 'dark') {
   document.body.classList.add('dark-mode');
