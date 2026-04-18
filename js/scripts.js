@@ -5,14 +5,17 @@ document.addEventListener('DOMContentLoaded', () => {
 const toggleButton = document.getElementById('theme-toggle');
 const lightLabel = '₊˚⊹Light Mode⊹˚₊';
 const darkLabel = '₊˚⊹Dark Mode⊹˚₊';
+const logo = document.getElementById("logo");
 
 // Load theme for this session only
 if (sessionStorage.getItem('theme') === 'dark') {
   document.body.classList.add('dark-mode');
   toggleButton.textContent = darkLabel;
+  logo.src = "images/logo_for_darkmode.png";   // ✅ ADD
 } else {
   document.body.classList.remove('dark-mode');
   toggleButton.textContent = lightLabel;
+  logo.src = "images/logo_for_lightmode.png";  // ✅ ADD
 }
 
 // Toggle theme
@@ -22,9 +25,11 @@ toggleButton.addEventListener('click', () => {
   if (document.body.classList.contains('dark-mode')) {
     toggleButton.textContent = darkLabel;
     sessionStorage.setItem('theme', 'dark');
+    logo.src = "images/logo_for_darkmode.png";   // ✅ ADD THIS
   } else {
     toggleButton.textContent = lightLabel;
     sessionStorage.setItem('theme', 'light');
+    logo.src = "images/logo_for_lightmode.png";  // ✅ ADD THIS
   }
 });
 
