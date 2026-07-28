@@ -646,3 +646,23 @@ img {
 body:not(.about-page) .nav ul {
   margin-top: -20px; /* 30px original - 50px shift = -20px */
 }
+
+.social-preview {
+    width: 580px;              /* matches .entry-image */
+    display: flex;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.social-preview img {
+    flex: 1;
+    width: 0;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 6px;
+    transition: transform .2s ease;
+}
+
+.social-preview img:hover {
+    transform: scale(1.04);
+}
